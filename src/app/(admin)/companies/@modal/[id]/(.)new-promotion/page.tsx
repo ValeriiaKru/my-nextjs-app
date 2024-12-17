@@ -5,18 +5,14 @@ import { useRouter } from 'next/navigation';
 import PromotionFormModal from '@/app/components/promotion-form-modal';
 
 export interface PageProps {
-  params: Promise<{ id: string }>; // params є Promise
+  params: { id: string };
 }
 
-export default async function Page({ params }: PageProps) {
+export default function Page({ params }: PageProps) {
   const router = useRouter();
-
-  // Розгортаємо params
-  const { id } = await params;
-
   return (
     <PromotionFormModal
-      companyId={id}
+      companyId={params.id}
       show={true}
       onClose={() => router.back()}
     />
